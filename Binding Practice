@@ -1,0 +1,38 @@
+let $warning = $(".warning");
+
+
+
+  $warning.load().hide().show("slow");
+
+let image = document.querySelector(".image");
+
+let dog = {
+  sound: "woof",
+  talk: function () {
+  
+    console.log(this.sound);
+  
+  }
+
+}
+
+
+
+
+let talkFunction = dog.talk; 
+
+let boundFunction = 
+    talkFunction.bind(dog);
+
+boundFunction();
+
+
+
+
+
+let button = document.createElement("button");
+button.textContent = "Big Button";
+image.appendChild(button);
+
+
+button.addEventListener("click", dog.talk.bind(dog) );
