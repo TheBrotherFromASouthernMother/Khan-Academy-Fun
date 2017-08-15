@@ -1,8 +1,15 @@
+//This is an example of a common ajax request
+
+//This is a new instance of the XMLHttpRequest object that we create to make the request
 var xhr =  new XMLHttpRequest(); 
 
+//This is the callback function that handles the response from the server
 xhr.onreadystatechange = function() {
     if(xhr.readyState === 4) {
+    
+        //This parses the string returned from the response data and stores the value or object described by the string into a variable
        let employees = JSON.parse(xhr.responseText);
+       
       let statusHTML = "<ul class= 'bulleted'>";
       for (let i = 0; i < employees.length; i++) {
           if (employees[i].inoffice === true) {
@@ -23,6 +30,9 @@ xhr.onreadystatechange = function() {
       
 
 };
+//This opens the request
 xhr.open('GET', 'data/employees.json');
+
+//This sends the request
  xhr.send();
  
