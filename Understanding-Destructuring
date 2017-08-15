@@ -1,0 +1,21 @@
+Destructuring allows the developer to take a part the properties of an object or the values of a array and declare them as
+individual variables in the global scope.
+
+//Object containing properties
+let arr = {
+  a: "Animals", 
+  b: "Get your damn dirty Ape hands off me",
+  c: "I like big booty",
+  d: 12}; 
+  
+//declartion of properties as individual variables
+let {a, b, c, d} = arr;
+  --OJO: When destructing an object's properties, the variable names must match the keys in the object, this is not necessary
+    for arrays.
+
+
+//logs the new variables out to the console
+console.log(a);
+console.log(b);
+console.log(c);
+console.log(d);
