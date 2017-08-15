@@ -1,25 +1,32 @@
 let $warning = $(".warning");
 
 
-
   $warning.load().hide().show("slow");
 
 let image = document.querySelector(".image");
 
+
+//Binding elements gives your "this" a reference when it is used. 
+
+
+//In this object, this.sound has the value of "woof"
+
 let dog = {
   sound: "woof",
   talk: function () {
-  
     console.log(this.sound);
-  
-  }
-
+    }
 }
 
-
-
+//However, in the function immediately below, this.sound has the value of undefined. This is because
+//"this" is not referecning the sound property in the dog variable, but rather it is looking for the 
+//sound property in talkFunction
 
 let talkFunction = dog.talk; 
+
+
+//the boundFunction solves the above issue by taking talkFunction and binding its this.sound reference to always equal 
+//the sound property in dog. 
 
 let boundFunction = 
     talkFunction.bind(dog);
@@ -29,10 +36,11 @@ boundFunction();
 
 
 
-
 let button = document.createElement("button");
 button.textContent = "Big Button";
 image.appendChild(button);
 
 
-button.addEventListener("click", dog.talk.bind(dog) );
+button.addEventListener("click", dog.talk.bind(dog) ); 
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ //Not exactly sure what this does, it seems to take the dog.talk and bind it's this.sound reference back to dog.sound.
