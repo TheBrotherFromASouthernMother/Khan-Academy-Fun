@@ -1,0 +1,58 @@
+App.js (Main Program File):
+
+//imports data from the file weather.js
+const weather = require('./weather.js');
+
+//gets the the third command-line argument
+const city = process.argv.slice(2);
+
+//executes the GetWeather function from the weather.js file
+weather.GetWeather(city);
+______________________________________________________________________
+Weather.js (File containing the main function):
+
+//imports the http module
+const http = require('http');
+
+//hides the api key to prevent security leaks
+const key = require('./api.js')
+
+
+//Main function
+function GetWeather (city = "Houston") {const request = http.get(`http://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${key.apikey}`,(response) => {
+  
+            let body = "";
+  
+            response.on("data", (data) => {
+              body += data;
+              
+            })
+            
+            response.on("end", () => { 
+               body = body.toString()
+             const par = JSON.parse(body)
+             let message = `You are in ${par.name}: The weather currently is showing ${par.weather[0].description} with a high of ${par.main.temp_max} and a low of ${par.main.temp_min}`;
+             console.log(message);
+              })
+
+            response.on("error", () => {
+                        let message = `Error: $[city] could not be found :(`
+                        console.error(message);
+                        })
+      
+     }) //end request
+}
+
+ 
+module.exports.GetWeather = GetWeather;
+_____________________________________________________________
+Api.js (File containing the api key):
+
+    //Api key for openweather maps
+    const apikey = "c2eb1efd18d6970cd9007295b5d394b0";
+    
+    //api key for weather underground
+    const otherkey = "8ced766437428c81"
+
+//exports the api key 
+module.exports.apikey = apikey;
