@@ -1,0 +1,21 @@
+//Simple Recursion using arithmatic and boolean logic
+
+let countDownFrom = (num) => {
+
+//This is the stop condition
+  if (num < 0) {
+  return;
+  } 
+  
+  console.log(num);
+  countDownFrom(num -1);
+  
+};
+
+
+countDownFrom(10);
+
+//Output will show 10,9,8 .. 0
+
+---------------------------------------------------------------
+
