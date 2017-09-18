@@ -18,18 +18,21 @@ var birdCounter = makeCounter("bird");
 var dogCounter = makeCounter("dog");
 */
 
+-------------------
+var container = document.getElementById('container');
+var header = document.getElementById('header');
+//For outputs sake
 
-let container = document.getElementById('container');
-let header = document.getElementById('Head');
-
- function makeTimer(clock, interval) {
+//function to make a html element increment
+ function makeTimer(clock, interval, timeMeasure) {
    var counter = 0;
-   setInterval(timeIt, interval)
     function timeIt() {
-      clock.innerHTML(counter);
       counter ++;
+      clock.innerHTML = counter + " " + timeMeasure;
+
     }
+    setInterval(timeIt, interval)
  }
 
- makeTimer(container, 1000);
- makeTimer(header, 500);
+ makeTimer(container, 1000, "seconds");
+ makeTimer(header, 100, "miliseconds");
